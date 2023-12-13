@@ -1045,5 +1045,105 @@ getch();
 
 
 
+[10:30 PM, 12/13/2023] Gaurav iiit: Write C++ program using STL for sorting and searching user defined records such as personal records (Name, DOB, Telephone number etc) using vector container.
+[10:31 PM, 12/13/2023] Gaurav iiit: #include <iostream>
+#include <vector>
+#include <algorithm>
+#include <string>
+
+struct PersonalRecord {
+    std::string name;
+    std::string dob;
+    std::string phoneNumber;
+
+    PersonalRecord(const std::string& n, const std::string& d, const std::string& phone)
+        : name(n), dob(d), phoneNumber(phone) {}
+};
+
+// Function to display a single personal record
+void displayRecord(const PersonalRecord& record) {
+    std::cout << "Name: " << record.name << "\tDOB: " << record.dob << "\tPhone: " << record.phoneNumber << std::endl;
+}
+
+// Function to display all personal records in a vector
+void displayRecords(const std::vector<PersonalRecord>& records) {
+    for (const auto& record : records) {
+        displayRecord(record);
+    }
+}
+
+int main() {
+    // Create …
+[10:31 PM, 12/13/2023] Gaurav iiit: second question 6 practical
+[10:31 PM, 12/13/2023] Gaurav iiit: Write C++ program using STL for sorting and searching user defined records such as Item records (Item code, name, cost, quantity etc) using vector container.
+[10:31 PM, 12/13/2023] Gaurav iiit: #include <iostream>
+#include <vector>
+#include <algorithm>
+#include <string>
+
+struct ItemRecord {
+    int itemCode;
+    std::string itemName;
+    double cost;
+    int quantity;
+
+    ItemRecord(int code, const std::string& name, double c, int qty)
+        : itemCode(code), itemName(name), cost(c), quantity(qty) {}
+};
+
+// Function to display a single item record
+void displayRecord(const ItemRecord& record) {
+    std::cout << "Code: " << record.itemCode << "\tName: " << record.itemName
+              << "\tCost: " << record.cost << "\tQuantity: " << record.quantity << std::endl;
+}
+
+// Function to display all item records in a vector
+void displayRecords(const std::vector<ItemRecord>& records) {
+    for (const auto& record : records) {
+        displayRecord(record);
+    }
+}
+
+int main() {
+    // Create a vector of ItemRecord
+    std::vector<ItemRecord> records;
+
+    // Add some sample records to the vector
+    records.push_back(ItemRecord(101, "Laptop", 1200.50, 5));
+    records.push_back(ItemRecord(203, "Printer", 349.99, 2));
+    records.push_back(ItemRecord(304, "Mouse", 19.99, 10));
+
+    // Display the unsorted records
+    std::cout << "Unsorted Records:\n";
+    displayRecords(records);
+
+    // Sorting records based on item code
+    std::sort(records.begin(), records.end(), [](const ItemRecord& a, const ItemRecord& b) {
+        return a.itemCode < b.itemCode;
+    });
+
+    // Display the sorted records
+    std::cout << "\nSorted Records (by Item Code):\n";
+    displayRecords(records);
+
+    // Searching for a record based on item name
+    std::string searchName = "Printer";
+    auto it = std::find_if(records.begin(), records.end(), [searchName](const ItemRecord& record) {
+        return record.itemName == searchName;
+    });
+
+    // Display the search result
+    if (it != records.end()) {
+        std::cout << "\nRecord Found:\n";
+        displayRecord(*it);
+    } else {
+        std::cout << "\nRecord Not Found.\n";
+    }
+
+    return 0;
+}
+
+
+
 
 
